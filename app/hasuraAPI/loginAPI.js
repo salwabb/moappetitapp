@@ -1,3 +1,7 @@
+// Login API function which takes in an email and a password and passes them 
+// to Hasura to authenticate and return a response
+// Got code directly from Hasura
+// TODO: validation still needs to be done and shown in the UI
 loginAPI = async (email, password) => {
     try {
         var requestOptions = {

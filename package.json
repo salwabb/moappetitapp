@@ -8,9 +8,12 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.0",
+    "apollo-boost": "^0.4.4",
     "braces": "^3.0.2",
     "expo": "^34.0.1",
     "expo-constants": "^6.0.0",
+    "graphql": "^14.5.5",
     "mem": "^5.1.1",
     "react": "16.8.3",
     "react-dom": "^16.8.6",
