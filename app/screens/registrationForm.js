@@ -1,18 +1,25 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Button} from 'react-native-material-ui';
+//import loginAPI from './app/HasuraAPI/loginAPI'
 import { TextField } from 'react-native-materialui-textfield';
-import loginAPI from '../hasuraAPI/loginAPI';
-
-export default class LoginScreen extends React.Component {
+// LoginForm componenet
+export default class RegistrationForm extends React.Component {
 
     // Initializing state
     constructor(props) {
         super(props);
         this.state = {
+            name: '',
             email: '',
             password: '',
+            password2: '',
         };
+    }
+
+    // Handling change when user enters text for name
+    handleNameChange = name => {
+        this.setState({name})
     }
 
     // Handling change when user enters text for email
@@ -25,33 +32,34 @@ export default class LoginScreen extends React.Component {
         this.setState({password})
     }
 
-    /*loginAPI = async (email, password) => {
-        try {
-            var requestOptions = {
-                "method": "POST",
-                "headers": {
-                    "Content-Type": "application/json"
-                }
-            };
-            
-            var body = {
-                "provider": "email",
-                "data": {
-                    "email": email,
-                    "password": password
-                }
-            };
-            requestOptions.body = JSON.stringify(body)
-            const response = await fetch("https://auth.moappetit.com/v1/login", requestOptions)
-            const result = await response.json() // result.auth_token will return the auth token for current session
-            console.log(result)
-        } catch (e) { console.log(e) }
+    // Handling change when user enters text for confirmation password
+    handlePassword2Change = password2 => {
+        this.setState({password2})
+    }
+
+    /*handleSubmit = () => {
+        this.props.onSubmit({...this.state})
+    }*/
+
+    /*validateForm = () => {
+        if (this.state.email.length >= 7 && this.state.passowrd.length >= 8) {
+            return true
+        }
+        else {
+            return false
+        }
     }*/
 
     // Rendering to the UI the Input options and form button
     render() {
         return (
         <View style={styles.container}>
+            <TextField tintColor='rgba(12, 57, 14, 0.85)'
+            required
+            value= {this.state.name}
+            onChangeText={this.handleNameChange}
+            label="Name"
+            />
             <TextField tintColor='rgba(12, 57, 14, 0.85)'
             required
             value= {this.state.email}
@@ -65,8 +73,15 @@ export default class LoginScreen extends React.Component {
             onChangeText={this.handlePasswordChange}
             label="Password"
             />
+            <TextField tintColor='rgba(12, 57, 14, 0.85)'
+            required
+            secureTextEntry={true}
+            value= {this.state.password2}
+            onChangeText={this.handlePassword2Change}
+            label="Comfirm Password"
+            />
             <View>
-                <Button style={{ container: styles.buttonStyle}} text="Login" raised={true} primary={true} onPress={ () => loginAPI(this.state.email, this.state.password)}/>
+                <Button style={{ container: styles.buttonStyle}} text="Register" raised={true} primary={true} />
             </View>
         </View>
         )
