@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {Button} from 'react-native-material-ui';
-//import loginAPI from './app/HasuraAPI/loginAPI'
 import { TextField } from 'react-native-materialui-textfield';
-// LoginForm componenet
-export default class RegistrationForm extends React.Component {
+import registerAPI from '../hasuraAPI/registerAPI';
 
+// Added by Salwa
+export default class RegistrationForm extends React.Component {
     // Initializing state
     constructor(props) {
         super(props);
@@ -14,43 +14,102 @@ export default class RegistrationForm extends React.Component {
             email: '',
             password: '',
             password2: '',
+            error: '',
+            emailError: '',
+            passwordLengthError: '',
+            passwordConfirmError: '',
+            isFormValid: false,
         };
     }
 
-    // Handling change when user enters text for name
+    // Only check this.validateForm() function if any of the states of the fields changed
+    componentDidUpdate(prevProps, prevState) {
+        if (
+          this.state.name !== prevState.name ||
+          this.state.email !== prevState.email ||
+          this.state.password !== prevState.password ||
+          this.state.password2 !== prevState.password2 ||
+          this.state.emailError !== prevState.emailError ||
+          this.state.passwordLengthError !== prevState.passwordLengthError ||
+          this.state.passwordConfirmError !== prevState.passwordConfirmError
+        ) {
+          this.validateForm();
+        }
+      }
+
+    // Handling change when user enters text for name 
     handleNameChange = name => {
         this.setState({name})
     }
 
-    // Handling change when user enters text for email
+    emailIsValid = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+      }
+
+    // Handling change when user enters text for email and verifying that email is correct
     handleEmailChange = email => {
         this.setState({email})
-    }
-
-    // Handling change when user enters text for password
-    handlePasswordChange = password => {
-        this.setState({password})
-    }
-
-    // Handling change when user enters text for confirmation password
-    handlePassword2Change = password2 => {
-        this.setState({password2})
-    }
-
-    /*handleSubmit = () => {
-        this.props.onSubmit({...this.state})
-    }*/
-
-    /*validateForm = () => {
-        if (this.state.email.length >= 7 && this.state.passowrd.length >= 8) {
-            return true
+        const emails = this.state.email.split('@');
+        if (this.emailIsValid(email)) {
+            this.setState({emailError: ''})
         }
         else {
-            return false
+            this.setState({emailError: 'Invalid Email'})
         }
-    }*/
+    }
 
-    // Rendering to the UI the Input options and form button
+    // Handling change when user enters text for password and verifying that password length is correct
+    handlePasswordChange = password => {
+        this.setState({password})
+        if (password.length < 8) {
+            this.setState({passwordLengthError: 'Password must be at least 8 characters'})
+        }
+        else {
+            this.setState({passwordLengthError: ''})
+        }
+    }
+
+    // Handling change when user enters text for confirmation password and verifying that it's the same as the previous password
+    handlePassword2Change = password2 => {
+        this.setState({password2})
+        if (password2 !== this.state.password) {
+            this.setState({passwordConfirmError: 'Passwords must match'})
+        }
+        else {
+            this.setState({passwordConfirmError: ''})
+        }
+    }
+
+    // Handlig change when error is generated from registerAPI
+    setRegisterError = error => {
+        // If there's an error display that, otherwise send to new screen to tell the user to verify email address and then login
+        this.setState({error})
+        if(error === 'noerror') {
+            this.props.navigation.navigate('PostRegister')
+        }
+    }
+
+    // function to validate that the input is correct
+    validateForm = () => {
+        console.log(this.state);
+        const emails = this.state.email.split('@');
+        if (
+            this.state.password === this.state.password2 &&
+            this.state.password.length > 0 &&
+            this.state.password2.length > 0 && 
+            emails.length >= 2 &&
+            emails[0] &&
+            emails[1]
+          ) {
+            this.setState({ isFormValid: true, emailError: '', passwordLengthError: '', passwordConfirmError: '' });
+          } 
+        else {
+          this.setState({ isFormValid: false });
+        }
+      };
+
+
+    // Rendering to the UI the input options and submit button
     render() {
         return (
         <View style={styles.container}>
@@ -63,6 +122,7 @@ export default class RegistrationForm extends React.Component {
             <TextField tintColor='rgba(12, 57, 14, 0.85)'
             required
             value= {this.state.email}
+            error= {this.state.emailError}
             onChangeText={this.handleEmailChange}
             label="Email"
             />
@@ -70,25 +130,39 @@ export default class RegistrationForm extends React.Component {
             required
             secureTextEntry={true}
             value= {this.state.password}
+            error= {this.state.passwordLengthError}
             onChangeText={this.handlePasswordChange}
             label="Password"
             />
             <TextField tintColor='rgba(12, 57, 14, 0.85)'
             required
             secureTextEntry={true}
+            error= {this.state.passwordConfirmError}
             value= {this.state.password2}
             onChangeText={this.handlePassword2Change}
             label="Comfirm Password"
             />
             <View>
-                <Button style={{ container: styles.buttonStyle}} text="Register" raised={true} primary={true} />
+                <Button 
+                style={{ container: styles.buttonStyle}}
+                text="Register"
+                raised={true}
+                onPress={()=> registerAPI(this.state, this.setRegisterError)}
+                primary={true}
+                disabled={!this.state.isFormValid}
+                />
+            </View>
+            <View>
+                <Text style={styles.errorStyle}>
+                {this.state.error}
+                </Text>
             </View>
         </View>
         )
     }
-   
 }
 
+// Style container
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -97,4 +171,11 @@ const styles = StyleSheet.create({
     buttonStyle: {
         backgroundColor: 'rgba(12, 57, 14, 0.85)',
     },
+    errorStyle: {
+        alignItems: 'center',
+        color: 'red',
+        textAlign: 'center',
+    }
   });
+
+  // END: Added by Salwa
