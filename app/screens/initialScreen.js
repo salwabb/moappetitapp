@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, View, } from 'react-native';
 import { Button } from 'react-native-material-ui';
 
+// Added by Salwa
+// Rendering to the UI the Login and Register buttons
 export default class InitialScreen extends React.Component {
   render() {
       return (
@@ -23,6 +25,7 @@ export default class InitialScreen extends React.Component {
   }
 }
 
+// Style Container
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -38,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-
+// END: Added by Salwa
