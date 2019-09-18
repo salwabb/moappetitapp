@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from './app/screens/navigation';
 
+// Added by Salwa
 // App starts running from this fucntion
 export default class App extends React.Component {
 
@@ -8,3 +9,4 @@ export default class App extends React.Component {
    return <Container />;
   }
 }
+// END: Added by Salwa

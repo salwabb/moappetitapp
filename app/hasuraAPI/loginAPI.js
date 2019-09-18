@@ -3,7 +3,6 @@
 // Got code directly from Hasura
 // TODO: validation still needs to be done and shown in the UI
 import React from 'react';
-
 const LOGIN_URL = "https://auth.moappetit.com/v1/login"
 
 const loginAPI = async (data, callback) => {
@@ -41,3 +40,4 @@ const loginAPI = async (data, callback) => {
 };
 
 export default loginAPI;
+// DONE: Added by Salwa

@@ -3,7 +3,10 @@ import {View, StyleSheet, Text} from 'react-native';
 import {Button} from 'react-native-material-ui';
 import { TextField } from 'react-native-materialui-textfield';
 import loginAPI from '../hasuraAPI/loginAPI';
+import googleAPI from '../hasuraAPI/googleAPI';
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
+// Added by Salwa
 export default class LoginScreen extends React.Component {
     // Added by MAMADOU
     // Initializing state
@@ -54,8 +57,8 @@ export default class LoginScreen extends React.Component {
             this.setState({passwordLengthError: ''})
         }
     }
-
-    // Handlig change when error is generated from LoginAPI
+    
+ // Handlig change when error is generated from LoginAPI
     setLoginError = error => {
         // If there's an error display that, otherwise send to new screen to tell the user to verify email address and then login
         this.setState({error})
@@ -108,7 +111,14 @@ export default class LoginScreen extends React.Component {
                 onPress={ () => loginAPI(this.state, this.state.setLoginError)}
                 disabled={!this.state.isFormValid}
                 />
+                {/* On press button sends it to the loginAPI where the API from Hasura is stored*/}
+                <Button style={{ container: styles.buttonStyle}} text="Login" raised={true} primary={true} onPress={ () => loginAPI(this.state.email, this.state.password)}/>
             </View>
+            {/* Temporary Button - Jordan Dickerson */}
+            <View>
+                <Button style={{ container: styles.buttonStyle}} text="Google Login" raised={true} primary={true} onPress={ () => googleAPI()}/>
+            </View>
+            {/* Temporary Button end */}
         </View>
         )
     }
@@ -116,6 +126,7 @@ export default class LoginScreen extends React.Component {
 }
 //added Mamadou
 
+// Style Container
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -125,3 +136,4 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(12, 57, 14, 0.85)',
     },
   });
+// END: Added by Salwa
