@@ -4,6 +4,7 @@ import {Button} from 'react-native-material-ui';
 import { TextField } from 'react-native-materialui-textfield';
 import loginAPI from '../hasuraAPI/loginAPI';
 
+// Added by Salwa
 export default class LoginScreen extends React.Component {
 
     // Initializing state
@@ -25,30 +26,7 @@ export default class LoginScreen extends React.Component {
         this.setState({password})
     }
 
-    /*loginAPI = async (email, password) => {
-        try {
-            var requestOptions = {
-                "method": "POST",
-                "headers": {
-                    "Content-Type": "application/json"
-                }
-            };
-            
-            var body = {
-                "provider": "email",
-                "data": {
-                    "email": email,
-                    "password": password
-                }
-            };
-            requestOptions.body = JSON.stringify(body)
-            const response = await fetch("https://auth.moappetit.com/v1/login", requestOptions)
-            const result = await response.json() // result.auth_token will return the auth token for current session
-            console.log(result)
-        } catch (e) { console.log(e) }
-    }*/
-
-    // Rendering to the UI the Input options and form button
+    // Rendering to the UI the input options and submit button
     render() {
         return (
         <View style={styles.container}>
@@ -66,6 +44,7 @@ export default class LoginScreen extends React.Component {
             label="Password"
             />
             <View>
+                {/* On press button sends it to the loginAPI where the API from Hasura is stored*/}
                 <Button style={{ container: styles.buttonStyle}} text="Login" raised={true} primary={true} onPress={ () => loginAPI(this.state.email, this.state.password)}/>
             </View>
         </View>
@@ -74,6 +53,7 @@ export default class LoginScreen extends React.Component {
    
 }
 
+// Style Container
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -83,3 +63,4 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(12, 57, 14, 0.85)',
     },
   });
+// END: Added by Salwa
