@@ -5,7 +5,6 @@ import {Button} from 'react-native-material-ui';
 import { TextField } from 'react-native-materialui-textfield';
 // LoginForm componenet
 export default class RegistrationForm extends React.Component {
-
     // Initializing state
     constructor(props) {
         super(props);
