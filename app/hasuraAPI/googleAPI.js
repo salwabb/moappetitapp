@@ -1,3 +1,5 @@
+// Hasura API which creates and logs into an account by authenticating with google
+
 function googleAPI() 
 {
 var url = "https://auth.charisma19.hasura-app.io/v1/signup";

@@ -70,10 +70,11 @@ export default class LoginScreen extends React.Component {
             <View>
                 <Button style={{ container: styles.buttonStyle}} text="Login" raised={true} primary={true} onPress={ () => loginAPI(this.state.email, this.state.password)}/>
             </View>
+            {/* Temporary Button - Jordan Dickerson */}
             <View>
                 <Button style={{ container: styles.buttonStyle}} text="Google Login" raised={true} primary={true} onPress={ () => googleAPI()}/>
             </View>
-
+            {/* Temporary Button end */}
         </View>
         )
     }
