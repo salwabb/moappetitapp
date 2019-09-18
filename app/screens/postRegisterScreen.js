@@ -3,7 +3,7 @@ import { StyleSheet, View, Text} from 'react-native';
 import { Button } from 'react-native-material-ui';
 
 // Added by Salwa
-// Rendering to the UI the Login and Register buttons
+// Rendering to the UI the post Registration screen with the login button and informing the user that they need to validate their email
 export default class postRegisterScreen extends React.Component {
   render() {
       return (

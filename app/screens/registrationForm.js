@@ -3,6 +3,8 @@ import {View, StyleSheet, Text} from 'react-native';
 import {Button} from 'react-native-material-ui';
 import { TextField } from 'react-native-materialui-textfield';
 import registerAPI from '../hasuraAPI/registerAPI';
+import setUserAPI from '../hasuraAPI/setUserAPI';
+import { resultKeyNameFromField } from 'apollo-utilities';
 
 // Added by Salwa
 export default class RegistrationForm extends React.Component {
@@ -19,6 +21,7 @@ export default class RegistrationForm extends React.Component {
             passwordLengthError: '',
             passwordConfirmError: '',
             isFormValid: false,
+            isUserRegistered: false,
         };
     }
 
@@ -42,6 +45,7 @@ export default class RegistrationForm extends React.Component {
         this.setState({name})
     }
 
+    // Checkin if email is valid using a regular expression
     emailIsValid = (email) => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
       }
@@ -49,7 +53,6 @@ export default class RegistrationForm extends React.Component {
     // Handling change when user enters text for email and verifying that email is correct
     handleEmailChange = email => {
         this.setState({email})
-        const emails = this.state.email.split('@');
         if (this.emailIsValid(email)) {
             this.setState({emailError: ''})
         }
@@ -80,18 +83,17 @@ export default class RegistrationForm extends React.Component {
         }
     }
 
-    // Handlig change when error is generated from registerAPI
+    // Handlig change when error is generated from API's
     setRegisterError = error => {
         // If there's an error display that, otherwise send to new screen to tell the user to verify email address and then login
         this.setState({error})
-        if(error === 'noerror') {
+        if(this.state.error === '') {
             this.props.navigation.navigate('PostRegister')
         }
     }
 
-    // function to validate that the input is correct
+    // Function to validate that the input is correct
     validateForm = () => {
-        console.log(this.state);
         const emails = this.state.email.split('@');
         if (
             this.state.password === this.state.password2 &&
@@ -107,6 +109,33 @@ export default class RegistrationForm extends React.Component {
           this.setState({ isFormValid: false });
         }
       };
+
+      // Fucntion to handle the onPress prop for Button when the user tries to register
+      handleSubmit = async (name) => {
+        let registerResponse = await registerAPI(this.state) // Calling the register API
+        const resultResponse = await registerResponse.json()
+
+        // If the response generated from the API has a status of 200 then add the user to the user table
+        if (registerResponse.status === 200) {
+            const userInfo = {
+                hasura_id: resultResponse.hasura_id,
+                name: name
+            }
+
+            // Calling the setUser API
+            let setUserResponse = await setUserAPI(userInfo)
+            const resultResponseSetUser = await setUserResponse.json()
+            if (resultResponseSetUser["affected_rows"]) {
+                this.setRegisterError('')
+            }
+            else {
+                this.setRegisterError('Error adding to database') // resultResponseSetUser.message only contains undefined error messages
+            }
+        }
+        else {
+            this.setRegisterError(resultResponse.message)
+        }
+      }
 
 
     // Rendering to the UI the input options and submit button
@@ -147,7 +176,7 @@ export default class RegistrationForm extends React.Component {
                 style={{ container: styles.buttonStyle}}
                 text="Register"
                 raised={true}
-                onPress={()=> registerAPI(this.state, this.setRegisterError)}
+                onPress={()=> this.handleSubmit(this.state.name)}
                 primary={true}
                 disabled={!this.state.isFormValid}
                 />

@@ -33,6 +33,8 @@ const AppNavigator = createStackNavigator({
       screen: PostRegisterScreen,
     navigationOptions: () => ({
       headerTintColor: 'rgba(12, 57, 14, 0.85)',
+      headerLeft: null,
+      gesturesEnabled: false,
     }),
   },
   });
