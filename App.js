@@ -10,4 +10,3 @@ export default class App extends React.Component {
   }
 }
 // END: Added by Salwa
-
