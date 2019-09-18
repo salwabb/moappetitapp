@@ -4,6 +4,7 @@ import InitialScreen from './initialScreen';
 import LoginScreen from './loginForm';
 import RegisterScreen from './registrationForm';
 import PostRegisterScreen from './postRegisterScreen';
+import MainScreen from './mainScreen';
 import{ createAppContainer } from 'react-navigation';
 
 // Added by Salwa
@@ -29,6 +30,7 @@ const AppNavigator = createStackNavigator({
         headerTintColor: 'rgba(12, 57, 14, 0.85)',
       }),
     },
+    // Post Registration screen with option to login after verifying email
     PostRegister: {
       screen: PostRegisterScreen,
     navigationOptions: () => ({
@@ -37,6 +39,12 @@ const AppNavigator = createStackNavigator({
       gesturesEnabled: false,
     }),
   },
+  Main: {
+    screen: MainScreen,
+    navigationOptions: () => ({
+    headerTintColor: 'rgba(12, 57, 14, 0.85)',
+  }),
+},
   });
 
 // Stores the navigation for the entire app
