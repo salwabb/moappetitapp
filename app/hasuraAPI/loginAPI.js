@@ -5,7 +5,7 @@
 import React from 'react';
 const LOGIN_URL = "https://auth.moappetit.com/v1/login"
 
-const loginAPI = async (data, callback) => {
+const loginAPI = async (data) => {
     let requestOptions = {
             method: "POST",
             headers: {
@@ -23,16 +23,16 @@ const loginAPI = async (data, callback) => {
         requestOptions.body = JSON.stringify(body);
     try{
         const response = await fetch(LOGIN_URL, requestOptions)
-        const result = await response.json() // result.auth_token will return the auth token for current session
-        console.log(result)
-        if(response.status !== 200){
+        //const result = await response.json() // result.auth_token will return the auth token for current session
+        //console.log(result)
+        /*if(response.status !== 200){
             const error = result.message
             callback(error)
     } 
         else {
           const error = 'noerror'
           callback(error);
-    }
+    }*/
         return response;
     }   catch (e) { 
         console.log("Request Failed: " + e.message);

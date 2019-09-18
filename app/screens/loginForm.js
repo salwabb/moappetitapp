@@ -62,8 +62,9 @@ export default class LoginScreen extends React.Component {
     setLoginError = error => {
         // If there's an error display that, otherwise send to new screen to tell the user to verify email address and then login
         this.setState({error})
-        if(error === 'noerror') {
-            this.props.navigation.navigate('Register')
+        console.log(this.state)
+        if(error === '') {
+            this.props.navigation.navigate('Main')
         }
     }
 
@@ -83,6 +84,20 @@ export default class LoginScreen extends React.Component {
           this.setState({ isFormValid: false });
         }
       };
+
+      handleSubmit = async () => {
+        let loginResponse = await loginAPI(this.state)
+        console.log(loginResponse)
+        const loginResult = await loginResponse.json()
+        console.log(loginResult.message)
+        if(loginResponse.status !== 200) {
+            console.log(loginResult.message)
+            this.setLoginError(loginResult.message)
+        }
+        else {
+            this.setLoginError('')
+        }
+      }
       
     // Rendering to the UI the Input options and form button
     render() {
@@ -91,6 +106,7 @@ export default class LoginScreen extends React.Component {
             <TextField tintColor='rgba(12, 57, 14, 0.85)'
             required
             value= {this.state.email}
+            error= {this.state.emailError}
             onChangeText={this.handleEmailChange}
             label="Email"
             />
@@ -108,16 +124,16 @@ export default class LoginScreen extends React.Component {
                 text="Login" 
                 raised={true} 
                 primary={true} 
-                onPress={ () => loginAPI(this.state, this.state.setLoginError)}
+                onPress={ () => this.handleSubmit()}
                 disabled={!this.state.isFormValid}
                 />
                 {/* On press button sends it to the loginAPI where the API from Hasura is stored*/}
-                <Button style={{ container: styles.buttonStyle}} text="Login" raised={true} primary={true} onPress={ () => loginAPI(this.state.email, this.state.password)}/>
             </View>
             {/* Temporary Button - Jordan Dickerson */}
             <View>
                 <Button style={{ container: styles.buttonStyle}} text="Google Login" raised={true} primary={true} onPress={ () => googleAPI()}/>
             </View>
+            <View><Text style={styles.errorStyle}>{this.state.error}</Text></View>
             {/* Temporary Button end */}
         </View>
         )
@@ -135,5 +151,10 @@ const styles = StyleSheet.create({
     buttonStyle: {
         backgroundColor: 'rgba(12, 57, 14, 0.85)',
     },
+    errorStyle: {
+        alignItems: 'center',
+        color: 'red',
+        textAlign: 'center',
+    }
   });
 // END: Added by Salwa
