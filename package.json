@@ -7,9 +7,13 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
+  "rnpm": {
+    "assets": ["./assets/fonts/SeaweedScript-Regular.ttf"]
+ },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.0",
     "apollo-boost": "^0.4.4",
+    "apollo-client": "^2.6.4",
     "braces": "^3.0.2",
     "expo": "^34.0.1",
     "expo-constants": "^6.0.0",
