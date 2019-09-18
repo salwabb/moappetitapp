@@ -3,6 +3,8 @@ import {View, StyleSheet} from 'react-native';
 import {Button} from 'react-native-material-ui';
 import { TextField } from 'react-native-materialui-textfield';
 import loginAPI from '../hasuraAPI/loginAPI';
+import googleAPI from '../hasuraAPI/googleAPI';
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 // Added by Salwa
 export default class LoginScreen extends React.Component {
@@ -47,6 +49,11 @@ export default class LoginScreen extends React.Component {
                 {/* On press button sends it to the loginAPI where the API from Hasura is stored*/}
                 <Button style={{ container: styles.buttonStyle}} text="Login" raised={true} primary={true} onPress={ () => loginAPI(this.state.email, this.state.password)}/>
             </View>
+            {/* Temporary Button - Jordan Dickerson */}
+            <View>
+                <Button style={{ container: styles.buttonStyle}} text="Google Login" raised={true} primary={true} onPress={ () => googleAPI()}/>
+            </View>
+            {/* Temporary Button end */}
         </View>
         )
     }
