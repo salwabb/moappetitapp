@@ -16,7 +16,7 @@ const loginAPI = async (data) => {
     let body = {
             provider: "email",
             data: {
-                email: data.email,
+                email: (data.email).toLowerCase(),
                 password: data.password
             }
         };
