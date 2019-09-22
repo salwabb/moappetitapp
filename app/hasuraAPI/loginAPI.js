@@ -4,6 +4,8 @@
 // TODO: validation still needs to be done and shown in the UI
 import React from 'react';
 const LOGIN_URL = "https://auth.moappetit.com/v1/login"
+const STORAGE_KEY = 'auth_token'
+
 
 const loginAPI = async (data) => {
     let requestOptions = {

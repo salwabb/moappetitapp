@@ -5,6 +5,8 @@ import { TextField } from 'react-native-materialui-textfield';
 import loginAPI from '../hasuraAPI/loginAPI';
 import googleAPI from '../hasuraAPI/googleAPI';
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+import {AsyncStorage} from 'react-native';
+
 
 // Added by Salwa
 export default class LoginScreen extends React.Component {
@@ -18,10 +20,10 @@ export default class LoginScreen extends React.Component {
             error: '',
             emailError: '',
             passwordLengthError: '',
+            auth_token:'' ,
             isFormValid: false
         };
     }
-
     // Only check this.validateForm() function if any of the states of the fields changed
     componentDidUpdate(_prevProps, prevState) {
         if (
@@ -85,7 +87,7 @@ export default class LoginScreen extends React.Component {
         }
       };
 
-      handleSubmit = async () => {
+    handleSubmit = async () => {
         let loginResponse = await loginAPI(this.state)
         console.log(loginResponse)
         const loginResult = await loginResponse.json()
@@ -95,10 +97,15 @@ export default class LoginScreen extends React.Component {
             this.setLoginError(loginResult.message)
         }
         else {
+            console.log(loginResult.auth_token)
             this.setLoginError('')
         }
       }
-      
+    storeToken = async auth_token => {
+        await AsyncStorage.settoken(STORAGE_KEY, auth_token);
+        const result = await response.json() // result.auth_token will return the auth token for current session
+        console.log(result.auth_token)
+    }
     // Rendering to the UI the Input options and form button
     render() {
         return (
@@ -137,8 +144,7 @@ export default class LoginScreen extends React.Component {
             {/* Temporary Button end */}
         </View>
         )
-    }
-   
+        }
 }
 //added Mamadou
 
