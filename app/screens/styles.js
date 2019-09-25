@@ -33,7 +33,7 @@ export default StyleSheet.create({
       fontSize:22,
       lineHeight: 0, 
       paddingTop: 65,
-      fontFamily: "Bradley Hand",
+      //fontFamily: "Arial",
       width: 150,
       height: 150,
       color: "#E8E8E8",
