@@ -1,8 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, Image, Text} from 'react-native';
+
+import { StyleSheet, View, ImageBackground, Image, KeyboardAvoidingView, Text} from 'react-native';
 import {Button} from 'react-native-material-ui';
 //import loginAPI from './app/HasuraAPI/loginAPI'
 import { TextField } from 'react-native-materialui-textfield';
+import styles from './styles.js';
 // LoginForm componenet
 export default class RegistrationForm extends React.Component {
 
@@ -61,6 +63,7 @@ export default class RegistrationForm extends React.Component {
         return (
             <ImageBackground source={require('../assets/OpeningPageBackground.jpg')} resizeMode='cover'   style={styles.backgroundImage} 
             >{/* Thamima: Changes */} 
+            <KeyboardAvoidingView style={styles.KBAV} behavior="position" enabled>
                         <View style={styles.container}>
                  
                         <Text style={styles.CircleMoAppetit}>MoeAppetit</Text>
@@ -112,77 +115,9 @@ export default class RegistrationForm extends React.Component {
               </View>
         </View>
         </View>
+        </KeyboardAvoidingView>
         </ImageBackground>
         )
     }
    
 }
-const styles = StyleSheet.create({
-    fieldsArea: 
-    {
-        flex: 4,
-        marginBottom: 10,
-        backgroundColor: "white",
-        width: "100%"
-    },
-    CircleMoAppetit:
-    {
-      textAlign: 'center',
-      textAlignVertical: 'center',
-      backgroundColor: 'rgba(12, 57, 14, 0.85)', 
-      fontSize: 40,
-      lineHeight:20 - 4, 
-      paddingTop: 100,
-      fontFamily: "Bradley Hand",
-      width: 200,
-      height: 200,
-      color: "#E8E8E8",
-  
-      borderRadius: 100,
-      borderWidth: 0,
-      overflow: "hidden",
-    },
-    buttonHolder: 
-    {
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: "space-between"
-  
-    },
-    backgroundImage: {  // Thamima Changes
-      width: '100%',//
-     height: '100%', //
-    }, //
-    container: {
-     flex: 1,
-      paddingTop: 100,
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingLeft: 20,
-      paddingRight: 20,
-    },
-    buttonStyle2:
-    {
-    backgroundColor: 'rgba(132,132,132, 0.85)',
-
-
-
-    },
-    
-    buttonStyleDown: {
-        flex: 2,
-          backgroundColor: 'rgba(232,232,232, 0.85)',
-          width: '20%',
-        height: 40,
-      
-      },
-    buttonStyle: {
-      flex: 2,
-        backgroundColor: 'rgba(12, 57, 14, 0.85)',
-        width: '20%',
-      height: 40,
-    
-    },
-  });
-
-  
