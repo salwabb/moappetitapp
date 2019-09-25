@@ -16,15 +16,15 @@ const loginAPI = async (data) => {
     let body = {
             provider: "email",
             data: {
-                email: data.email,
+                email: (data.email).toLowerCase(),
                 password: data.password
             }
         };
         requestOptions.body = JSON.stringify(body);
     try{
-        const response = await fetch(LOGIN_URL, requestOptions)
-        //const result = await response.json() // result.auth_token will return the auth token for current session
-        //console.log(result)
+         const response = await fetch(LOGIN_URL, requestOptions)
+        // const result = await response.json() // result.auth_token will return the auth token for current session
+        // console.log(result)
         /*if(response.status !== 200){
             const error = result.message
             callback(error)
