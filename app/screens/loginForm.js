@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import { StyleSheet, View, ImageBackground,  KeyboardAvoidingView, Image, Text} from 'react-native';
 import {Button} from 'react-native-material-ui';
 import { TextField } from 'react-native-materialui-textfield';
 import loginAPI from '../hasuraAPI/loginAPI';
@@ -9,6 +9,7 @@ import facebooklogIn from '../hasuraAPI/facebookAPI';
 import { initAsync } from 'expo-google-sign-in';
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 import {AsyncStorage} from 'react-native';
+import styles from './styles.js';
 
 
 // Added by Salwa
@@ -127,65 +128,50 @@ export default class LoginScreen extends React.Component {
 
     // Rendering to the UI the Input options and form button
     render() {
-        return (
-        <View style={styles.container}>
-            <TextField tintColor='rgba(12, 57, 14, 0.85)'
-            required
-            value= {this.state.email}
-            error= {this.state.emailError}
-            onChangeText={this.handleEmailChange}
-            label="Email"
-            />
-            <TextField tintColor='rgba(12, 57, 14, 0.85)'
-            required
-            secureTextEntry={true}
-            value= {this.state.password}
-            error= {this.state.passwordLengthError}
-            onChangeText={this.handlePasswordChange}
-            label="Password"
-            />
-            <View>
-                <Button 
-                style={{ container: styles.buttonStyle}} 
-                text="Login" 
-                raised={true} 
-                primary={true} 
-                onPress={ () => this.handleSubmit() }
-                disabled={!this.state.isFormValid}
-                />
-                {/* On press button sends it to the loginAPI where the API from Hasura is stored*/}
-            </View>
-            {/* Temporary Button - Jordan Dickerson */}
-            <View>
-                
-                <Button style={{ container: styles.buttonStyle}} text="Facebook Login" raised={true} primary={true} onPress={ () => facebooklogIn()}/>
-            </View>
-            <View>
-                <Button style={{ container: styles.buttonStyle}} text="Google Login" raised={true} primary={true} onPress={ () => initAsync()}/>
-            </View>
-            <View><Text style={styles.errorStyle}>{this.state.error}</Text></View>
-            {/* Temporary Button end */}
-        </View>
-        )
-    }
+      return (
+          <ImageBackground source={require('../assets/OpeningPageBackground.jpg')} resizeMode='cover'style={styles.backgroundImage}>
+              {/* Thamima: Changes */} 
+          <KeyboardAvoidingView style={styles.KBAV} behavior="position" enabled>
+          <View style={styles.container}>
    
+          <Text style={styles.CircleMoAppetit}>MoeAppetit</Text>
+          <View style={styles.buttonHolder}>
+                <Button 
+              style={{ container: styles.buttonStyleDown}} 
+              primary={true} 
+              text="Login" 
+              raised={true}  
+              onPress={() => this.props.navigation.navigate('Login')}/>
+              <Button 
+              style={{ container: styles.buttonStyle}} 
+              primary={true} 
+              text="Register" 
+              raised={true} 
+              onPress={() => this.props.navigation.navigate('Register')}/>
+       </View>
+       
+       <View style={styles.fieldsArea}>
+          <TextField tintColor='rgba(12, 57, 14, 0.85)'
+          required
+          value= {this.state.email}
+          onChangeText={this.handleEmailChange}
+          label="Email"
+          />
+          <TextField tintColor='rgba(12, 57, 14, 0.85)'
+          required
+          secureTextEntry={true}
+          value= {this.state.password}
+          onChangeText={this.handlePasswordChange}
+          label="Password"
+          />
+          <View>
+              <Button style={{ container: styles.buttonStyle2}} text="Login" raised={true} primary={true} onPress={ () => this.handleSubmit()}/>
+          </View>
+      </View>
+      </View>
+      </KeyboardAvoidingView>
+      </ImageBackground>
+      )
+  }
+ 
 }
-//added Mamadou
-
-// Style Container
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-    },
-    buttonStyle: {
-        backgroundColor: 'rgba(12, 57, 14, 0.85)',
-    },
-    errorStyle: {
-        alignItems: 'center',
-        color: 'red',
-        textAlign: 'center',
-        
-    }
-  });
-// END: Added by Salwa

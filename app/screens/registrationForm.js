@@ -1,10 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import { StyleSheet, View, ImageBackground, Image, KeyboardAvoidingView, Text} from 'react-native';
 import {Button} from 'react-native-material-ui';
 import { TextField } from 'react-native-materialui-textfield';
 import registerAPI from '../hasuraAPI/registerAPI';
 import setUserAPI from '../hasuraAPI/setUserAPI';
 import { resultKeyNameFromField } from 'apollo-utilities';
+import styles from './styles.js';
+
 
 // Added by Salwa
 export default class RegistrationForm extends React.Component {
@@ -141,17 +143,37 @@ export default class RegistrationForm extends React.Component {
     // Rendering to the UI the input options and submit button
     render() {
         return (
-        <View style={styles.container}>
+            <ImageBackground source={require('../assets/OpeningPageBackground.jpg')} resizeMode='cover'   style={styles.backgroundImage} 
+            >{/* Thamima: Changes */} 
+            <KeyboardAvoidingView style={styles.KBAV} behavior="position" enabled>
+                        <View style={styles.container}>
+                 
+                        <Text style={styles.CircleMoAppetit}>MoeAppetit</Text>
+                        <View style={styles.buttonHolder}>
+                              <Button 
+                            style={{ container: styles.buttonStyle}} 
+                            primary={true} 
+                            text="Login" 
+                            raised={true} 
+                            onPress={() => this.props.navigation.navigate('Login')}/>
+                            <Button 
+                            style={{ container: styles.buttonStyleDown}} 
+                            primary={true} 
+                            text="Register" 
+                            raised={true} 
+                            onPress={() => this.props.navigation.navigate('Register')}/>
+                     </View>
+                     <View style={styles.fieldsArea}>
+    
             <TextField tintColor='rgba(12, 57, 14, 0.85)'
             required
             value= {this.state.name}
             onChangeText={this.handleNameChange}
             label="Name"
-            />
-            <TextField tintColor='rgba(12, 57, 14, 0.85)'
+                        />
+<TextField tintColor='rgba(12, 57, 14, 0.85)'
             required
             value= {this.state.email}
-            error= {this.state.emailError}
             onChangeText={this.handleEmailChange}
             label="Email"
             />
@@ -159,52 +181,29 @@ export default class RegistrationForm extends React.Component {
             required
             secureTextEntry={true}
             value= {this.state.password}
-            error= {this.state.passwordLengthError}
             onChangeText={this.handlePasswordChange}
             label="Password"
             />
             <TextField tintColor='rgba(12, 57, 14, 0.85)'
             required
             secureTextEntry={true}
-            error= {this.state.passwordConfirmError}
             value= {this.state.password2}
             onChangeText={this.handlePassword2Change}
             label="Comfirm Password"
             />
+             {/* Thamima: Changes: onPress Event */} 
             <View>
-                <Button 
-                style={{ container: styles.buttonStyle}}
-                text="Register"
-                raised={true}
-                onPress={()=> this.handleSubmit(this.state.name)}
-                primary={true}
-                disabled={!this.state.isFormValid}
-                />
-            </View>
-            <View>
-                <Text style={styles.errorStyle}>
-                {this.state.error}
-                </Text>
-            </View>
+              <Button style={{ container: styles.buttonStyle2}} onPress={this.handleSubmit} text="Register" raised={true} primary={true} />
+              </View>
         </View>
+        </View>
+        </KeyboardAvoidingView>
+        </ImageBackground>
         )
     }
 }
 
 // Style container
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-    },
-    buttonStyle: {
-        backgroundColor: 'rgba(12, 57, 14, 0.85)',
-    },
-    errorStyle: {
-        alignItems: 'center',
-        color: 'red',
-        textAlign: 'center',
-    }
-  });
+
 
   // END: Added by Salwa
