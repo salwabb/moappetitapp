@@ -20,16 +20,16 @@ export default class LoginScreen extends React.Component {
             error: '',
             emailError: '',
             passwordLengthError: '',
-            auth_token:'' ,
             isFormValid: false
         };
     }
+        
     // Only check this.validateForm() function if any of the states of the fields changed
     componentDidUpdate(_prevProps, prevState) {
         if (
           this.state.email !== prevState.email ||
           this.state.password !== prevState.password ||
-          this.state.emailError !== prevState.emailError 
+          this.state.emailError !== prevState.emailError
           ) {
           this.validateForm();
         }
@@ -89,23 +89,39 @@ export default class LoginScreen extends React.Component {
 
     handleSubmit = async () => {
         let loginResponse = await loginAPI(this.state)
-        console.log(loginResponse)
         const loginResult = await loginResponse.json()
-        console.log(loginResult.message)
+        console.log(loginResult)
         if(loginResponse.status !== 200) {
             console.log(loginResult.message)
             this.setLoginError(loginResult.message)
         }
         else {
-            console.log(loginResult.auth_token)
+            console.log("Auth Token: " +loginResult.auth_token)
+            await AsyncStorage.setItem('token', loginResult.auth_token);
             this.setLoginError('')
         }
       }
-    storeToken = async auth_token => {
-        await AsyncStorage.settoken(STORAGE_KEY, auth_token);
-        const result = await response.json() // result.auth_token will return the auth token for current session
-        console.log(result.auth_token)
-    }
+    // Added By Mamadou Store Token
+    setValue = async () => {
+        try {
+          await AsyncStorage.setItem('token', loginResult.auth_token);
+          console.log("set Value run:" +auth)
+        } catch (e) {
+            console.log("setVAlue: " +loginResult.auth_token)
+        }
+      }
+
+    getValue = async () => {
+        try {
+          const auth = await AsyncStorage.getItem('token');
+            console.log("Token: " +auth)
+        }
+        catch (error) {
+            console.log("error")
+        }
+      }
+    //Store Token End
+
     // Rendering to the UI the Input options and form button
     render() {
         return (
@@ -131,7 +147,7 @@ export default class LoginScreen extends React.Component {
                 text="Login" 
                 raised={true} 
                 primary={true} 
-                onPress={ () => this.handleSubmit()}
+                onPress={ () => this.handleSubmit() }
                 disabled={!this.state.isFormValid}
                 />
                 {/* On press button sends it to the loginAPI where the API from Hasura is stored*/}
@@ -144,7 +160,8 @@ export default class LoginScreen extends React.Component {
             {/* Temporary Button end */}
         </View>
         )
-        }
+    }
+   
 }
 //added Mamadou
 

@@ -4,8 +4,6 @@
 // TODO: validation still needs to be done and shown in the UI
 import React from 'react';
 const LOGIN_URL = "https://auth.moappetit.com/v1/login"
-const STORAGE_KEY = 'auth_token'
-
 
 const loginAPI = async (data) => {
     let requestOptions = {
@@ -24,9 +22,9 @@ const loginAPI = async (data) => {
         };
         requestOptions.body = JSON.stringify(body);
     try{
-        const response = await fetch(LOGIN_URL, requestOptions)
-        //const result = await response.json() // result.auth_token will return the auth token for current session
-        //console.log(result)
+         const response = await fetch(LOGIN_URL, requestOptions)
+        // const result = await response.json() // result.auth_token will return the auth token for current session
+        // console.log(result)
         /*if(response.status !== 200){
             const error = result.message
             callback(error)
