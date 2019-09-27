@@ -134,7 +134,7 @@ export default class LoginScreen extends React.Component {
           <KeyboardAvoidingView style={styles.KBAV} behavior="position" enabled>
           <View style={styles.container}>
    
-          <Text style={styles.CircleMoAppetit}>MoeAppetit</Text>
+          <Text style={styles.CircleMoAppetit}>"MoeAppetit"</Text>
           <View style={styles.buttonHolder}>
                 <Button 
               style={{ container: styles.buttonStyleDown}} 
