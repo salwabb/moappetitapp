@@ -29,9 +29,8 @@ export default class LoginScreen extends React.Component {
     // Rendering to the UI the Input options and form button
     render() {
         return (
-            <ImageBackground source={require('../assets/OpeningPageBackground.jpg')} resizeMode='cover'   style={styles.backgroundImage} 
->{/* Thamima: Changes */} 
-<KeyboardAvoidingView style={styles.KBAV} behavior="position" enabled>
+            <ImageBackground source={require('../assets/OpeningPageBackground.jpg')} resizeMode='cover' style={styles.backgroundImage}> 
+            <KeyboardAvoidingView style={styles.KBAV} behavior="position" enabled>
             <View style={styles.container}>
      
             <Text style={styles.CircleMoAppetit}>MoeAppetit</Text>
