@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import{ createAppContainer } from 'react-navigation';
 import HomeScreen from '../components/Homescreen';
@@ -6,6 +7,8 @@ import AboutScreen from '../components/Aboutscreen';
 import DebugScreen from '../components/Debugscreen';
 import { StyleSheet, Text, View } from 'react-native';
 import MainScreen from './mainScreen';
+import ContactUsScreen from './contactUs';
+
 import RegisterScreen from './registrationForm';
 import PostRegisterScreen from './postRegisterScreen';
 
@@ -46,6 +49,7 @@ navigationOptions: ({navigation}) => ({
   PostRegister: {
     screen: PostRegisterScreen,
   navigationOptions: () => ({
+
     headerTintColor: 'rgba(12, 57, 14, 0.85)',
     drawerLabel: <Hidden />,
     drawerLockMode: "locked-closed",

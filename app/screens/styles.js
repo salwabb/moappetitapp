@@ -55,6 +55,12 @@ export default StyleSheet.create({
       borderWidth: 0,
       overflow: "hidden",
     },
+    aboutImage:
+    {
+      width: 50,
+      height: 50
+
+    },
     buttonHolder: 
     {
       flex: .2,
@@ -96,6 +102,14 @@ export default StyleSheet.create({
       height: 40,
     
     },
+    subPageHeadStyle:
+    {
+      fontSize:22
+    },
+    longText:
+    {
+      fontSize: 12
+    }
   });
 
   
