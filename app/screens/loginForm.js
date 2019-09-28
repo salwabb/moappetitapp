@@ -7,12 +7,14 @@ import googleAPI from '../hasuraAPI/googleAPI';
 import * as Facebook from 'expo-facebook';
 import facebooklogIn from '../hasuraAPI/facebookAPI';
 import { initAsync } from 'expo-google-sign-in';
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 import {AsyncStorage} from 'react-native';
 import styles from './styles.js';
 
 
+
+
 // Added by Salwa
+
 export default class LoginScreen extends React.Component {
     // Added by MAMADOU
     // Initializing state
