@@ -7,12 +7,14 @@ import googleAPI from '../hasuraAPI/googleAPI';
 import * as Facebook from 'expo-facebook';
 import facebooklogIn from '../hasuraAPI/facebookAPI';
 import { initAsync } from 'expo-google-sign-in';
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 import {AsyncStorage} from 'react-native';
 import styles from './styles.js';
 
 
+
+
 // Added by Salwa
+
 export default class LoginScreen extends React.Component {
     // Added by MAMADOU
     // Initializing state
@@ -134,7 +136,7 @@ export default class LoginScreen extends React.Component {
           <KeyboardAvoidingView style={styles.KBAV} behavior="position" enabled>
           <View style={styles.container}>
    
-          <Text style={styles.CircleMoAppetit}>MoeAppetit</Text>
+          <Text style={styles.CircleMoAppetit}>"MoeAppetit"</Text>
           <View style={styles.buttonHolder}>
                 <Button 
               style={{ container: styles.buttonStyleDown}} 
@@ -150,7 +152,7 @@ export default class LoginScreen extends React.Component {
               onPress={() => this.props.navigation.navigate('Register')}/>
        </View>
        
-       <View style={styles.fieldsArea}>
+       <View style={styles.fieldsArea2}>
           <TextField tintColor='rgba(12, 57, 14, 0.85)'
           required
           value= {this.state.email}
@@ -164,10 +166,10 @@ export default class LoginScreen extends React.Component {
           onChangeText={this.handlePasswordChange}
           label="Password"
           />
-          <View>
+      </View>
+      <View>
               <Button style={{ container: styles.buttonStyle2}} text="Login" raised={true} primary={true} onPress={ () => this.handleSubmit()}/>
           </View>
-      </View>
       </View>
       </KeyboardAvoidingView>
       </ImageBackground>

@@ -1,70 +1,100 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation-stack';
-import InitialScreen from './initialScreen';
-import LoginScreen from './loginForm';
-import AboutUsScreen from './aboutUs';
+
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import{ createAppContainer } from 'react-navigation';
+import HomeScreen from '../components/Homescreen';
+import AboutScreen from '../components/Aboutscreen';
+import DebugScreen from '../components/Debugscreen';
+import { StyleSheet, Text, View } from 'react-native';
+import MainScreen from './mainScreen';
 import ContactUsScreen from './contactUs';
+
 import RegisterScreen from './registrationForm';
 import PostRegisterScreen from './postRegisterScreen';
-import MainScreen from './mainScreen';
-import{ createAppContainer } from 'react-navigation';
 
-// Added by Salwa
-const AppNavigator = createStackNavigator({
-    // For each screen that you can navigate to, create a new entry like this:
-    // Initial screen when app is opened
-    Initial: {
-        screen: InitialScreen,
-      navigationOptions: () => ({
-      }),
-    },
-    // Login screen with option to return back to Initail Screen
-    Login: {
-        screen: LoginScreen,
-      navigationOptions: () => ({
-        headerTintColor: 'rgba(12, 57, 14, 0.85)',
-      }),
-    },
-    ContactUs: {
-      screen: ContactUsScreen,
-    navigationOptions: () => ({
-      headerTintColor: 'rgba(12, 57, 14, 0.85)',
-    }),
-  },
-        AboutUs: {
-          screen: AboutUsScreen,
-        navigationOptions: () => ({
-          headerTintColor: 'rgba(12, 57, 14, 0.85)',
-        }),
-      },
-       
-  
-    // Registration screen with option to return back to Initial Screen
-    Register: {
-        screen: RegisterScreen,
-      navigationOptions: () => ({
-        headerTintColor: 'rgba(12, 57, 14, 0.85)',
-      }),
-    },
-    // Post Registration screen with option to login after verifying email
-    PostRegister: {
-      screen: PostRegisterScreen,
-    navigationOptions: () => ({
-      headerTintColor: 'rgba(12, 57, 14, 0.85)',
-      headerLeft: null,
-      gesturesEnabled: false,
-    }),
-  },
-  Main: {
-    screen: MainScreen,
-    navigationOptions: () => ({
+import LoginScreen from './loginForm';
+
+export default class navigation extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}
+
+class Hidden extends React.Component {
+  render() {
+    return null;
+  }
+}
+const AppNavigator = createDrawerNavigator({
+
+Home: {
+  screen: HomeScreen
+},
+
+Debug: {
+  screen: DebugScreen
+},
+
+
+Login: {
+  screen: LoginScreen,
+navigationOptions: ({navigation}) => ({
+  headerTintColor: 'rgba(12, 57, 14, 0.85)',
+  drawerLabel: <Hidden />,
+  drawerLockMode: "locked-closed",
+}),
+},
+
+  // Post Registration screen with option to login after verifying email
+  PostRegister: {
+    screen: PostRegisterScreen,
+  navigationOptions: () => ({
+
     headerTintColor: 'rgba(12, 57, 14, 0.85)',
+    drawerLabel: <Hidden />,
+    drawerLockMode: "locked-closed",
   }),
 },
+
+ // Registration screen with option to return back to Initial Screen
+ Register: {
+  screen: RegisterScreen,
+navigationOptions: () => ({
+  headerTintColor: 'rgba(12, 57, 14, 0.85)',
+  drawerLabel: <Hidden />,
+  drawerLockMode: "locked-closed",
+}),
+},
+
+
+
+About: {
+  screen: AboutScreen
+},
+
+Main: {
+  screen: MainScreen,
+//   navigationOptions: () => ({
+//   headerTintColor: 'rgba(12, 57, 14, 0.85)',
+// }),
+},
+
+}, {
+initialRouteName: "Login",
+contentOptions: {
+  activeTintColor: '#e91e63'
+}
   });
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  });
 // Stores the navigation for the entire app
-const Container = createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(AppNavigator);
 
-export default Container;
 // END: Added by Salwa

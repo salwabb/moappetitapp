@@ -1,9 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, KeyboardAvoidingView, Image, Text} from 'react-native';
+import { StyleSheet, View, Text} from 'react-native';
 import {AsyncStorage} from 'react-native';
 import {Button} from 'react-native-material-ui';
-import styles from '../screens/styles';
-
 
 // Added by Mamadou Store Token
 // Rendering to the UI the post Registration screen with the login button and informing the user that they need to validate their email
@@ -14,17 +12,6 @@ export default class MainScreen extends React.Component {
         auth: '',
       };
     }
-
-switchToContactUs = async() =>
-{
-   this.props.navigation.navigate('ContactUs');
-}
-
-
-switchToAboutUs = async() =>
-{
-  this.props.navigation.navigate('AboutUs');
-}
 
   getValue = async () => {
     try {
@@ -39,22 +26,18 @@ switchToAboutUs = async() =>
 
   render() {
       return (
-        <ImageBackground source={require('../assets/OpeningPageBackground.jpg')} resizeMode='cover'style={styles.backgroundImage}>
           <View style={styles.container}>
-              <View><Text style={styles.textStyle}>Welcome to the main screen {  }</Text></View>
-
+              <View><Text style={styles.textStyle}>Welcome to the main screen { }</Text></View>
               <View>
-              <Button style={{ container: styles.buttonStyle}} text="About US" raised={true} primary={true}   onPress={ () => this.switchToAboutUs()}/>
-              
-              <Button style={{ container: styles.buttonStyle}} text="Contact Us" raised={true} primary={true} onPress={ () => this.switchToContactUs()}/>            </View>
+                <Button style={{ container: styles.buttonStyle}} text="Get Auth Token" raised={true} primary={true} onPress={ () => this.getValue()}/>
+            </View>
           </View>
-          </ImageBackground>
       );
   }
 }
 
 // Style Container
-/* const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -67,6 +50,6 @@ switchToAboutUs = async() =>
       alignItems: 'center',
       textAlign: 'center',
   }
-}); */
+});
 
 // END: Added by Mamadou
