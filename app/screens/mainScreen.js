@@ -13,6 +13,17 @@ export default class MainScreen extends React.Component {
       };
     }
 
+switchToContactUs = async() =>
+{
+   this.props.navigation.navigate('ContactUs');
+}
+
+
+switchToAboutUs = async() =>
+{
+  this.props.navigation.navigate('AboutUs');
+}
+
   getValue = async () => {
     try {
       const auth = await AsyncStorage.getItem('token');
@@ -29,7 +40,10 @@ export default class MainScreen extends React.Component {
           <View style={styles.container}>
               <View><Text style={styles.textStyle}>Welcome to the main screen {  }</Text></View>
               <View>
-                <Button style={{ container: styles.buttonStyle}} text="Google Login" raised={true} primary={true} onPress={ () => this.getValue()}/>
+              <Button style={{ container: styles.buttonStyle}} text="About US" raised={true} primary={true}   onPress={ () => this.switchToAboutUs()}/>
+              
+              <Button style={{ container: styles.buttonStyle}} text="Contact Us" raised={true} primary={true} onPress={ () => this.switchToContactUs()}/>
+             <Button style={{ container: styles.buttonStyle}} text="Google Login" raised={true} primary={true} onPress={ () => this.getValue()}/>
             </View>
           </View>
       );

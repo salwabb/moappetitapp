@@ -2,6 +2,8 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import InitialScreen from './initialScreen';
 import LoginScreen from './loginForm';
+import AboutUsScreen from './aboutUs';
+import ContactUsScreen from './contactUs';
 import RegisterScreen from './registrationForm';
 import PostRegisterScreen from './postRegisterScreen';
 import MainScreen from './mainScreen';
@@ -23,6 +25,20 @@ const AppNavigator = createStackNavigator({
         headerTintColor: 'rgba(12, 57, 14, 0.85)',
       }),
     },
+    ContactUs: {
+      screen: ContactUsScreen,
+    navigationOptions: () => ({
+      headerTintColor: 'rgba(12, 57, 14, 0.85)',
+    }),
+  },
+        AboutUs: {
+          screen: AboutUsScreen,
+        navigationOptions: () => ({
+          headerTintColor: 'rgba(12, 57, 14, 0.85)',
+        }),
+      },
+       
+  
     // Registration screen with option to return back to Initial Screen
     Register: {
         screen: RegisterScreen,
