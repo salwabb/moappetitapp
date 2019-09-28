@@ -152,7 +152,7 @@ export default class LoginScreen extends React.Component {
               onPress={() => this.props.navigation.navigate('Register')}/>
        </View>
        
-       <View style={styles.fieldsArea}>
+       <View style={styles.fieldsArea2}>
           <TextField tintColor='rgba(12, 57, 14, 0.85)'
           required
           value= {this.state.email}
@@ -166,10 +166,10 @@ export default class LoginScreen extends React.Component {
           onChangeText={this.handlePasswordChange}
           label="Password"
           />
-          <View>
+      </View>
+      <View>
               <Button style={{ container: styles.buttonStyle2}} text="Login" raised={true} primary={true} onPress={ () => this.handleSubmit()}/>
           </View>
-      </View>
       </View>
       </KeyboardAvoidingView>
       </ImageBackground>

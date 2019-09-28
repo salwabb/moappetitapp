@@ -192,10 +192,11 @@ export default class RegistrationForm extends React.Component {
             label="Comfirm Password"
             />
              {/* Thamima: Changes: onPress Event */} 
-            <View>
+            
+        </View>
+        <View>
               <Button style={{ container: styles.buttonStyle2}} onPress={this.handleSubmit} text="Register" raised={true} primary={true} />
               </View>
-        </View>
         </View>
         </KeyboardAvoidingView>
         </ImageBackground>

@@ -9,7 +9,7 @@ export default StyleSheet.create({
   KBAV:
   {
     flex: 1,
-    paddingTop: 0,
+    paddingTop: 1,
     alignItems: 'center',
     marginLeft: -100,
     marginRight: -100,
@@ -18,12 +18,25 @@ export default StyleSheet.create({
   },
     fieldsArea: 
     {
-        flex: 4,
+        flex: .53,
+        borderWidth: 3,
         marginBottom: 0,
         paddingBottom: 0,
         backgroundColor: "white",
         width: "60%"
     },
+
+    // Login Area Style
+    fieldsArea2: 
+    {
+        flex: .26,
+        borderWidth: 3,
+        marginBottom: 0,
+        paddingBottom: 0,
+        backgroundColor: "white",
+        width: "60%"
+    },
+
     CircleMoAppetit:
     {
       
@@ -44,7 +57,7 @@ export default StyleSheet.create({
     },
     buttonHolder: 
     {
-      flex: 1,
+      flex: .2,
       flexDirection: 'row',
       justifyContent: "space-between",
       width: "60%"
@@ -64,6 +77,9 @@ export default StyleSheet.create({
     },
     buttonStyle2:
     {
+    width: 375,
+    borderWidth: 3,
+    justifyContent: 'center',
     backgroundColor: 'rgba(132,132,132, 0.85)'
     },
     buttonStyleDown: {

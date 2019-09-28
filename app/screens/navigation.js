@@ -3,7 +3,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import{ createAppContainer } from 'react-navigation';
 import HomeScreen from '../components/Homescreen';
 import AboutScreen from '../components/Aboutscreen';
-import AccountScreen from '../components/Accountscreen';
+import DebugScreen from '../components/Debugscreen';
 import { StyleSheet, Text, View } from 'react-native';
 import MainScreen from './mainScreen';
 import RegisterScreen from './registrationForm';
@@ -27,6 +27,11 @@ const AppNavigator = createDrawerNavigator({
 Home: {
   screen: HomeScreen
 },
+
+Debug: {
+  screen: DebugScreen
+},
+
 
 Login: {
   screen: LoginScreen,
@@ -69,10 +74,6 @@ Main: {
 //   headerTintColor: 'rgba(12, 57, 14, 0.85)',
 // }),
 },
-
-// Account: {
-//   screen: AccountScreen
-// }
 
 }, {
 initialRouteName: "Login",
