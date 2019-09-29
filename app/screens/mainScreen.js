@@ -3,6 +3,10 @@ import { StyleSheet, View, ImageBackground, KeyboardAvoidingView, Image, Text} f
 import {AsyncStorage} from 'react-native';
 import {Button} from 'react-native-material-ui';
 import styles from '../screens/styles';
+import { Icon } from 'native-base';
+import { Header } from 'react-native-elements';
+
+
 
 
 // Added by Mamadou Store Token
@@ -35,20 +39,22 @@ switchToAboutUs = async() =>
         console.log("error")
     }
   }
+  
 //Store Token End 
 
   render() {
       return (
         <ImageBackground source={require('../assets/OpeningPageBackground.jpg')} resizeMode='cover'style={styles.backgroundImage}>
-          <View style={styles.container}>
-              <View><Text style={styles.textStyle}>Welcome to the main screen {  }</Text></View>
-
+                <Header
+                    leftComponent={<Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />}
+                    />
               <View>
-              <Button style={{ container: styles.buttonStyle}} text="About US" raised={true} primary={true}   onPress={ () => this.switchToAboutUs()}/>
-              
-              <Button style={{ container: styles.buttonStyle}} text="Contact Us" raised={true} primary={true} onPress={ () => this.switchToContactUs()}/>            </View>
-          </View>
-          </ImageBackground>
+              <Button style={ {container: styles.buttonStyle2}} text="About US" raised={true} primary={true} onPress={ () => this.switchToAboutUs()}/>
+              </View>
+              <View>
+              <Button style={{ container: styles.buttonStyle2}} text="Contact Us" raised={true} primary={true} onPress={ () => this.switchToContactUs()}/>            
+              </View>
+           </ImageBackground>
       );
   }
 }

@@ -5,14 +5,18 @@ import{ createAppContainer } from 'react-navigation';
 import HomeScreen from '../components/Homescreen';
 import AboutScreen from '../components/Aboutscreen';
 import DebugScreen from '../components/Debugscreen';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import MainScreen from './mainScreen';
-import ContactUsScreen from './contactUs';
+import ContactUs from '../screens/contactUs';
+import AboutUs from '../screens/aboutUs';
 
 import RegisterScreen from './registrationForm';
 import PostRegisterScreen from './postRegisterScreen';
 
 import LoginScreen from './loginForm';
+
+//import { createStackNavigator, StackNavigator } from 'react-navigation-stack';
+
 
 export default class navigation extends React.Component {
   render() {
@@ -28,7 +32,17 @@ class Hidden extends React.Component {
 const AppNavigator = createDrawerNavigator({
 
 Home: {
-  screen: HomeScreen
+  screen: HomeScreen,
+  navigationOptions: ({navigation}) => ({
+    headerTintColor: 'rgba(12, 57, 14, 0.85)',
+    drawerLabel: <Hidden />,
+    drawerLockMode: "locked-closed",
+  }),
+  },
+  
+'Contact Us': {
+  
+  screen: ContactUs
 },
 
 Debug: {
@@ -39,6 +53,7 @@ Debug: {
 Login: {
   screen: LoginScreen,
 navigationOptions: ({navigation}) => ({
+  headerLeft: <Image source={require('../../assets/drawer.png')} size={35} onPress={ () => navigation.navigate('DrawerOpen') } />,
   headerTintColor: 'rgba(12, 57, 14, 0.85)',
   drawerLabel: <Hidden />,
   drawerLockMode: "locked-closed",
@@ -66,24 +81,32 @@ navigationOptions: () => ({
 }),
 },
 
-
-
-About: {
-  screen: AboutScreen
+'About Us': {
+  screen: AboutUs
 },
 
 Main: {
   screen: MainScreen,
-//   navigationOptions: () => ({
-//   headerTintColor: 'rgba(12, 57, 14, 0.85)',
-// }),
+  
+ navigationOptions: () => ({
+   
+headerTintColor: 'rgba(12, 57, 14, 0.85)',
+ }),
 },
 
 }, {
 initialRouteName: "Login",
 contentOptions: {
   activeTintColor: '#e91e63'
-}
+},
+
+
+  // drawerPosition: 'left',
+  // //contentComponent: 'CustomDrawerNavigation',
+  // drawerOpenRoute: 'DrawerOpen',
+  // drawerCloseRoute: 'DrawerClose',
+  // drawerToggleRoute: 'DrawerToggle',
+  // DimensionsdrawerWidth: ('width' / 3) * 2,
   });
 
   const styles = StyleSheet.create({
@@ -95,6 +118,17 @@ contentOptions: {
     },
   });
 // Stores the navigation for the entire app
+
+// const logNavigator = StackNavigator({
+//   Login: {
+//     screen: LoginScreen,
+//     navigationOptions: ({ navigation }) => ({
+//       title: 'Login',  // Title to appear in status bar
+//       headerLeft: <Image source={require('../../assets/drawer.png')} size={35} onPress={ () => navigation.navigate('DrawerOpen') } />,
+//     })
+//   }
+// });
+
 const AppContainer = createAppContainer(AppNavigator);
 
 // END: Added by Salwa
