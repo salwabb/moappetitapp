@@ -15,6 +15,8 @@ import PostRegisterScreen from './postRegisterScreen';
 
 import LoginScreen from './loginForm';
 
+
+
 //import { createStackNavigator, StackNavigator } from 'react-navigation-stack';
 
 
@@ -40,9 +42,39 @@ Home: {
   }),
   },
   
-'Contact Us': {
-  
-  screen: ContactUs
+'Contact Us': { 
+  screen: ContactUs,
+  navigationOptions: {
+    drawerIcon: () => (
+      <Image
+        source={require('../assets/drawer.png')}
+        resizeMode="contain"
+        style={{ width: 20, height: 20}}
+      />
+    )
+  }
+
+},
+
+'About Us': {
+  screen: AboutUs,
+
+  navigationOptions: {
+    drawerIcon: () => (
+      <Image
+        source={require('../assets/Vector.jpg')}
+        resizeMode="contain"
+        style={{ width: 20, height: 20 }}
+      />
+    )
+  }
+},
+
+Main: {
+  screen: MainScreen, 
+ navigationOptions: () => ({  
+headerTintColor: 'rgba(12, 57, 14, 0.85)',
+ }),
 },
 
 Debug: {
@@ -52,8 +84,7 @@ Debug: {
 
 Login: {
   screen: LoginScreen,
-navigationOptions: ({navigation}) => ({
-  headerLeft: <Image source={require('../../assets/drawer.png')} size={35} onPress={ () => navigation.navigate('DrawerOpen') } />,
+navigationOptions: () => ({
   headerTintColor: 'rgba(12, 57, 14, 0.85)',
   drawerLabel: <Hidden />,
   drawerLockMode: "locked-closed",
@@ -79,19 +110,6 @@ navigationOptions: () => ({
   drawerLabel: <Hidden />,
   drawerLockMode: "locked-closed",
 }),
-},
-
-'About Us': {
-  screen: AboutUs
-},
-
-Main: {
-  screen: MainScreen,
-  
- navigationOptions: () => ({
-   
-headerTintColor: 'rgba(12, 57, 14, 0.85)',
- }),
 },
 
 }, {

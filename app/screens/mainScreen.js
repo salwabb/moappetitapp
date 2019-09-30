@@ -45,7 +45,7 @@ switchToAboutUs = async() =>
   render() {
       return (
         <ImageBackground source={require('../assets/OpeningPageBackground.jpg')} resizeMode='cover'style={styles.backgroundImage}>
-                <Header
+                <Header transparent
                     leftComponent={<Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />}
                     />
               <View>
