@@ -88,6 +88,16 @@ export default StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(132,132,132, 0.85)'
     },
+
+    buttonStyle3:
+    {
+    width: 300,
+    height: 300,
+    borderWidth: 3,
+    justifyContent: 'center',
+    backgroundColor: 'rgba(132,132,132, 0.85)'
+    },
+
     buttonStyleDown: {
         flex: 2,
           backgroundColor: 'rgba(232,232,232, 0.85)',

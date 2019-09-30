@@ -45,13 +45,7 @@ Home: {
 'Contact Us': { 
   screen: ContactUs,
   navigationOptions: {
-    drawerIcon: () => (
-      <Image
-        source={require('../assets/drawer.png')}
-        resizeMode="contain"
-        style={{ width: 20, height: 20}}
-      />
-    )
+    
   }
 
 },
