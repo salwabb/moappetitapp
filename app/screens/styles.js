@@ -98,6 +98,14 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(132,132,132, 0.85)'
     },
 
+    textDisplay:
+    {
+      width: "60%",
+      height: "60%",
+      backgroundColor: 'rgba(132,132,132, 0.85)'
+
+    },
+
     buttonStyleDown: {
         flex: 2,
           backgroundColor: 'rgba(232,232,232, 0.85)',
@@ -114,11 +122,18 @@ export default StyleSheet.create({
     },
     subPageHeadStyle:
     {
-      fontSize:22
+      fontSize:22,
+      backgroundColor: 'rgba(12, 57, 14, 0.85)',
+      justifyContent: "center",
+      color:"white"
     },
     longText:
     {
-      fontSize: 12
+      fontSize: 12,
+      paddingTop: 2,
+      backgroundColor: 'rgba(12, 57, 14, 0.85)',
+      justifyContent: "center",
+      color:"white"
     }
   });
 

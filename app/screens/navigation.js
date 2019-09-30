@@ -45,7 +45,8 @@ Home: {
 'Contact Us': { 
   screen: ContactUs,
   navigationOptions: {
-    
+    drawerLabel: <Hidden />,
+    drawerLockMode: "locked-closed",
   }
 
 },
@@ -66,9 +67,15 @@ Home: {
 
 Main: {
   screen: MainScreen, 
- navigationOptions: () => ({  
-headerTintColor: 'rgba(12, 57, 14, 0.85)',
- }),
+  navigationOptions: {
+    drawerIcon: () => (
+      <Image
+        source={require('../assets/home-icon.png')}
+        resizeMode="contain"
+        style={{ width: 20, height: 20 }}
+      />
+    )
+  }
 },
 
 Debug: {
