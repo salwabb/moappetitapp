@@ -107,6 +107,22 @@ export default class LoginScreen extends React.Component {
             this.setLoginError('')
         }
       }
+
+      handleSubmitFacebook = async () => {
+        let loginResponse2 = await facebooklogIn()
+        // const loginResult2 = await loginResponse2.json()
+        // console.log(loginResult2)
+        // if(loginResponse.status !== 200) {
+        //     console.log(loginResult2.message)
+        //     this.setLoginError(loginResult2.message)
+        // }
+        // else {
+            // console.log("Auth Token: " +loginResponse2.token)
+            // await AsyncStorage.setItem('token', loginResponse2.token);
+            this.setLoginError('')
+        }
+      
+      
     // Added By Mamadou Store Token
     setValue = async () => {
         try {
@@ -167,8 +183,11 @@ export default class LoginScreen extends React.Component {
           label="Password"
           />
       </View>
-      <View>
+          <View>
               <Button style={{ container: styles.buttonStyle2}} text="Login" raised={true} primary={true} onPress={ () => this.handleSubmit()}/>
+          </View>
+          <View>
+              <Button style={{ container: styles.buttonStyle2}} text="Facebook Login" raised={true} primary={true} onPress={ () => this.handleSubmitFacebook()}/>
           </View>
       </View>
       </KeyboardAvoidingView>

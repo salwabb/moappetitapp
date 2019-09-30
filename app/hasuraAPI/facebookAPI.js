@@ -51,8 +51,8 @@ async function facebooklogIn(){
       console.log('response', response)
       const json = await response.json();
       console.log('EMAIL', json)
-      alert('EMAIL', json);
       facebookAPI(token);
+      return response;
     } else {
       type === 'cancel'
       console.log("Function Failed : " +type)
