@@ -15,6 +15,7 @@ import PostRegisterScreen from './postRegisterScreen';
 
 import LoginScreen from './loginForm';
 
+import CartScreen from './cartScreen';
 
 
 //import { createStackNavigator, StackNavigator } from 'react-navigation-stack';
@@ -80,6 +81,15 @@ Main: {
 
 Debug: {
   screen: DebugScreen
+},
+
+cart : {
+  screen: CartScreen,
+  navigationOptions: () => ({
+    headerTintColor: 'rgba(12, 57, 14, 0.85)',
+    drawerLabel: <Hidden />,
+    drawerLockMode: "locked-closed",
+  }),
 },
 
 
