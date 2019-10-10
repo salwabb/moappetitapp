@@ -9,6 +9,7 @@ import '../hasuraAPI/shopifyAPI'
 import { client, products } from '../hasuraAPI/shopifyAPI';
 
 
+
 let prod = 
 
     client.product.fetchAll().then( products => {
@@ -86,7 +87,8 @@ switchToAboutUs = async() =>
         <ImageBackground source={require('../assets/OpeningPageBackground.jpg')} resizeMode='cover'style={styles.backgroundImage}>
                 <Header transparent
                     leftComponent={<Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />}
-                    />
+                    rightComponent={<Icon name="md-cart" onPress={() => this.props.navigation.navigate('cart')} />}
+                   />
               <View>
                 <Text>{console.log(prod3._55)}</Text>
               <Button style={ {container: styles.buttonStyle3}}  text={(prod._55+ ": " +prod2._55)} raised={true} primary={true} onPress={ () => this.switchToAboutUs() }/>
