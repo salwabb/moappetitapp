@@ -9,10 +9,9 @@ import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import MainScreen from './mainScreen';
 import ContactUs from '../screens/contactUs';
 import AboutUs from '../screens/aboutUs';
-
+import UserScreen from "../screens/UserScreen"
 import RegisterScreen from './registrationForm';
 import PostRegisterScreen from './postRegisterScreen';
-
 import LoginScreen from './loginForm';
 
 
@@ -53,6 +52,21 @@ Home: {
 
 'About Us': {
   screen: AboutUs,
+
+  navigationOptions: {
+    drawerIcon: () => (
+      <Image
+        source={require('../assets/Vector.jpg')}
+        resizeMode="contain"
+        style={{ width: 20, height: 20 }}
+      />
+    )
+  }
+},
+
+
+'User': {
+  screen: UserScreen,
 
   navigationOptions: {
     drawerIcon: () => (
